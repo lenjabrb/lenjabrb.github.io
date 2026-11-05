@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  background-color: #fce4ec;
+  color: #880e4f;
+  font-family: Arial, sans-serif;
+}
+header {
+  background-color: #f8bbd0;
+  padding: 1.5rem;
+}
+h1 {
+  margin: 0;
+  color: #880e4f;
+  font-family: "Italianno", cursive;
+  font-size: 3.5rem;
+  font-weight: normal;
+  line-height: 1;
+}
+h1 svg {
+  width: 0.9em;
+  height: 0.9em;
+  fill: currentColor;
+  vertical-align: middle;
+  margin-left: 0.2em;
+}
+main {
+  padding: 1.5rem;
+}
+header {
+  background-color: #f8bbd0;
+  padding: 1.5rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: #880e4f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+meter {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12rem;
+  height: 1.2rem;
+  border: none;
+  background: #e8f5e9;
+  border-radius: 0.6rem;
+}
+
+meter::-webkit-meter-bar {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 0.6rem;
+  height: 1.2rem;
+}
+
+meter::-webkit-meter-optimum-value,
+meter::-webkit-meter-suboptimum-value,
+meter::-webkit-meter-even-less-good-value {
+  background: #a5d6a7;
+  border-radius: 0.6rem;
+}
+
+meter::-moz-meter-bar {
+  background: #a5d6a7;
+  border-radius: 0.6rem;
+}
+figure,
+blockquote {
+  margin: 1.5rem 0;
+  background-color: #ffffff;
+  border: 2px solid #f8bbd0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+figure blockquote {
+  margin: 0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.zeitstrahl {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0 0 0 2rem;
+  border-left: 3px solid #f8bbd0;
+}
+
+.zeitstrahl li {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.zeitstrahl li::before {
+  content: "";
+  position: absolute;
+  left: -2.6rem;
+  top: 0.35rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #880e4f;
+  border-radius: 50%;
+}
+
+.zeitstrahl time {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #880e4f;
+}
+
+.zeitstrahl p {
+  margin: 0.25rem 0 0 0;
+}
