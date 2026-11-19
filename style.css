@@ -16,3 +16,59 @@ h1 {
     color: #000000;
     border: 1px solid #f5e5e5;
 }
+/* Kontaktbereich */
+.Kontakt-container {
+    max-width: 650px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+/* Überschrift */
+.Kontakt-container h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Beschreibungstext */
+.Kontakt-container p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Beschriftungen */
+.Kontakt-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Eingabefelder */
+.Kontakt-container input,
+.Kontakt-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #e8c5d0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+/* Absende-Button */
+.Kontakt-container button {
+    background-color: #f5e5e5;
+    color: #000000;
+    border: 1px solid #e8c5d0;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Button beim Darüberfahren */
+.Kontakt-container button:hover {
+    background-color: #e8c5d0;
+}
