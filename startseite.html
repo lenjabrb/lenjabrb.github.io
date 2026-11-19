@@ -1,40 +1,396 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  =====================================================================
+  MUSEUM OF US – Startseite
+  Portfolioprüfung im Modul "Grundlagen Web-Programmierung"
+  Technik: HTML5, CSS3, JavaScript, Bootstrap 5.3 (per CDN)
+  Dateien: startseite.html · style.css · script.js
+  =====================================================================
+-->
 <html lang="de">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Startseite - Museum of Us</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
-  </head>
-  <body>
-    <h1>Startseite</h1>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Museum of Us</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Unsere Künstlerinnen
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="lenja.html">Über Lenja</a></li>
-            <li><a class="dropdown-item" href="angelina.html">Über Angelina</a></li>
+<head>
+  <!-- Zeichensatz: UTF-8, damit Umlaute (ä, ö, ü, ß) korrekt angezeigt werden -->
+  <meta charset="UTF-8">
+
+  <!-- Viewport: Grundlage für die responsive Darstellung auf Tablet und Smartphone -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Titel und Beschreibung (wichtig für Browser-Tab und Suchmaschinen) -->
+  <title>Museum of Us – Willkommen</title>
+  <meta name="description" content="Das Museum of Us: Zwei Studentinnen stellen sich im ersten Semester als Team in einer virtuellen Ausstellung vor.">
+
+  <!-- Bootstrap 5.3 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts: Cormorant Garamond (Überschriften, museal-elegant) + Lato (Fließtext, gut lesbar) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Eigenes Stylesheet: wird NACH Bootstrap geladen, damit unsere Regeln Bootstrap überschreiben -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Skip-Link für Barrierefreiheit: Tastaturnutzer:innen können direkt zum Inhalt springen -->
+  <a class="visually-hidden-focusable skip-link" href="#hauptinhalt">Zum Hauptinhalt springen</a>
+
+  <!-- =================================================================
+       KOPFBEREICH MIT NAVIGATION
+       <header> + <nav> = semantische Elemente für Kopf und Navigation
+       ================================================================= -->
+  <header>
+    <!--
+      Bootstrap-Navbar:
+      - navbar-expand-lg: ab "lg" (≥ 992px) horizontal, darunter Hamburger-Menü
+      - data-bs-theme="dark": helle Schrift/Icons auf dunklem (weinrotem) Hintergrund
+      - sticky-top: Navigation bleibt beim Scrollen sichtbar (wie ein Museumsleitsystem)
+    -->
+    <nav class="navbar navbar-expand-lg sticky-top museum-navbar" data-bs-theme="dark" aria-label="Hauptnavigation">
+      <div class="container">
+
+        <!-- Name des Museums (Logo-Ersatz) -->
+        <a class="navbar-brand" href="startseite.html">Museum <span class="brand-of">of</span> Us</a>
+
+        <!-- Hamburger-Button für kleine Bildschirme -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarInhalt"
+          aria-controls="navbarInhalt" aria-expanded="false" aria-label="Navigation ein- oder ausklappen">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Einklappbarer Bereich mit den Menüpunkten -->
+        <div class="collapse navbar-collapse" id="navbarInhalt">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+            <!-- Menüpunkt 1: Startseite (aktuelle Seite) -->
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="startseite.html">Startseite</a>
+            </li>
+
+            <!-- Menüpunkt 2: Ausstellungen mit Dropdown zu den beiden Einzelausstellungen -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownAusstellungen" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Ausstellungen
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end museum-dropdown" aria-labelledby="dropdownAusstellungen">
+                <!-- Die Unterseiten werden separat erstellt; hier stehen nur die Verlinkungen -->
+               <!-- UX-Verbesserung:Anpassung der Links -->
+                <li><a class="dropdown-item" href="lenja.html">Über Lenja</a></li>
+                <li><a class="dropdown-item" href="angelina.html">Über Angelina</a></li>
+              </ul>
+            </li>
+
+            <!-- Menüpunkt 3: Kontakt -->
+            <li class="nav-item">
+              <a class="nav-link" href="kontakt.html">Kontaktiere uns</a>
+            </li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="kontakt.html">Kontaktiere uns</a>
-        </li>
-      </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =================================================================
+       HAUPTINHALT
+       <main> darf pro Seite nur einmal vorkommen
+       ================================================================= -->
+  <main id="hauptinhalt">
+
+    <!-- ---------------------------------------------------------------
+         1) EINGANGSHALLE: Begrüßung im Museumston + Kurzeinführung
+         --------------------------------------------------------------- -->
+    <section class="hero" aria-labelledby="titel-begruessung">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9 col-xl-8 text-center">
+
+            <!-- Kleine Zeile über der Überschrift, wie auf einer Eintrittskarte -->
+            <p class="eyebrow reveal">Eintritt frei · Geöffnet für alle Neugierigen</p>
+
+            <!-- Hauptüberschrift (einzige h1 der Seite) -->
+            <h1 id="titel-begruessung" class="reveal">Willkommen im<br><span class="title-accent">Museum of Us</span></h1>
+
+            <!-- Dekorative Trennlinie -->
+            <div class="ornament reveal" aria-hidden="true"><span>◆</span></div>
+
+            <!-- Begrüßung im Museumston -->
+            <p class="lead-museum reveal">
+              Sehr geehrte Besucherinnen und Besucher, wir freuen uns, Sie in unseren Hallen willkommen zu heißen.
+              Treten Sie näher, nehmen Sie sich Zeit und lassen Sie sich von den Exponaten unserer Sammlung führen.
+            </p>
+
+            <!-- Kurzeinführung: 3 Sätze zum Projekt und zur Gestaltungsidee -->
+            <p class="intro reveal">
+              Das Museum of Us ist die persönliche Vorstellungswebsite von uns beiden, zwei Studentinnen im ersten Semester,
+              die sich hier als Team präsentieren. Wir haben die Form eines Museums gewählt, weil jeder Mensch eine Sammlung
+              aus Erfahrungen, Interessen und Fähigkeiten ist, die es verdient, wie ein Kunstwerk betrachtet zu werden.
+              Jede von uns erhält deshalb ihre eigene Ausstellung, und Sie können in Ihrem eigenen Tempo hindurchgehen.
+            </p>
+
+            <!-- Zwei Buttons: führen zu den Ausstellungen -->
+             <!-- UX-Verbesserung: Anpassung der Links & des Buttons -->
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4 reveal">
+              <a href="lenja.html" class="btn btn-museum-outline">Zur Ausstellung „Lenja“</a>
+              <a href="angelina.html" class="btn btn-museum-outline">Zur Ausstellung „Angelina“</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------
+         2) HIGHLIGHTS DER SAMMLUNG: interaktives Element Nr. 1 = Bootstrap-Karussell
+         --------------------------------------------------------------- -->
+    <section class="section-gallery" aria-labelledby="titel-highlights">
+      <div class="container">
+
+        <header class="section-header text-center reveal">
+          <p class="eyebrow">Saal I</p>
+          <h2 id="titel-highlights">Highlights der Sammlung</h2>
+          <p class="section-sub">Ein erster Blick auf drei besondere Exponate.</p>
+        </header>
+
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10 col-xl-8 reveal">
+
+            <!--
+              Bootstrap-Karussell:
+              - data-bs-ride="false": startet nicht automatisch (ruhiger, museumsartiger)
+              - Steuerung per Pfeile, Indikatoren (Punkte) und Tastatur
+            -->
+            <div id="karussellHighlights" class="carousel slide museum-carousel" data-bs-ride="false"
+              aria-label="Karussell mit den Highlights der Sammlung">
+
+              <!-- Indikatoren (kleine Punkte unten) -->
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#karussellHighlights" data-bs-slide-to="0" class="active"
+                  aria-current="true" aria-label="Exponat 1"></button>
+                <button type="button" data-bs-target="#karussellHighlights" data-bs-slide-to="1"
+                  aria-label="Exponat 2"></button>
+                <button type="button" data-bs-target="#karussellHighlights" data-bs-slide-to="2"
+                  aria-label="Exponat 3"></button>
+              </div>
+
+              <div class="carousel-inner">
+
+                <!-- Exponat I -->
+                <div class="carousel-item active">
+                  <figure class="exhibit">
+                    <!--
+                      PLATZHALTER FÜR EUER BILD:
+                      Ersetzt das <div class="exhibit-frame"> durch z. B.
+                      <img src="bilder/lenja.jpg" class="exhibit-img" alt="Beschreibung des Bildes">
+                    -->
+                    <div class="exhibit-frame" role="img" aria-label="Platzhalter für ein Foto von Lenja">
+                      <span>Exponat I</span>
+                    </div>
+                    <figcaption class="exhibit-plaque">
+                      <h3>Exponat I – „Die Neugierige“</h3>
+                      <p>Material: Ideen, Kreativität und Kaffee. Entstehungszeitraum: laufend.</p>
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <!-- Exponat II -->
+                <div class="carousel-item">
+                  <figure class="exhibit">
+                    <!-- PLATZHALTER FÜR EUER BILD (siehe oben) -->
+                    <div class="exhibit-frame" role="img" aria-label="Platzhalter für ein Foto von Angelina">
+                      <span>Exponat II</span>
+                    </div>
+                    <figcaption class="exhibit-plaque">
+                      <h3>Exponat II – „Die Gestalterin“</h3>
+                      <p>Material: Leidenschaft, Struktur und ein Auge fürs Detail. Entstehungszeitraum: laufend.</p>
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <!-- Exponat III -->
+                <div class="carousel-item">
+                  <figure class="exhibit">
+                    <!-- PLATZHALTER FÜR EUER BILD (siehe oben) -->
+                    <div class="exhibit-frame" role="img" aria-label="Platzhalter für ein gemeinsames Teamfoto">
+                      <span>Exponat III</span>
+                    </div>
+                    <figcaption class="exhibit-plaque">
+                      <h3>Exponat III – „Das Duo“</h3>
+                      <p>Zwei Persönlichkeiten, ein gemeinsames Projekt. Erstmals ausgestellt im ersten Semester.</p>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- Pfeile zum Vor- und Zurückblättern -->
+              <button class="carousel-control-prev" type="button" data-bs-target="#karussellHighlights"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Vorheriges Exponat</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#karussellHighlights"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Nächstes Exponat</span>
+              </button>
+            </div>
+
+            <!-- Zähler "Exponat 1 von 3"; wird per JavaScript aktualisiert -->
+            <p id="karussellZaehler" class="carousel-counter" aria-live="polite">Exponat 1 von 3</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------
+         3) MUSEUMSFÜHRER: interaktives Element Nr. 2 = Bootstrap-Akkordeon
+         --------------------------------------------------------------- -->
+    <section class="section-guide" aria-labelledby="titel-fuehrer">
+      <div class="container">
+
+        <header class="section-header text-center reveal">
+          <p class="eyebrow">Saal II</p>
+          <h2 id="titel-fuehrer">Ihr Museumsführer</h2>
+          <p class="section-sub">Alles Wissenswerte für Ihren Rundgang.</p>
+        </header>
+
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-9 col-xl-8 reveal">
+
+            <!-- Bootstrap-Akkordeon: es ist immer nur ein Abschnitt gleichzeitig geöffnet -->
+            <div class="accordion museum-accordion" id="akkordeonFuehrer">
+
+              <!-- Abschnitt 1 (standardmäßig geöffnet) -->
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#fuehrer1" aria-expanded="true" aria-controls="fuehrer1">
+                    Was erwartet Sie in diesem Museum?
+                  </button>
+                </h3>
+                <div id="fuehrer1" class="accordion-collapse collapse show" data-bs-parent="#akkordeonFuehrer">
+                  <div class="accordion-body">
+                    Sie begegnen zwei Persönlichkeiten, ihren Interessen, ihren Stärken und ihren Zielen. Statt eines
+                    klassischen Lebenslaufs präsentieren wir uns in Form von Exponaten, die zum Verweilen und Entdecken
+                    einladen.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Abschnitt 2 -->
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#fuehrer2" aria-expanded="false" aria-controls="fuehrer2">
+                    Wie ist die Ausstellung aufgebaut?
+                  </button>
+                </h3>
+                <div id="fuehrer2" class="accordion-collapse collapse" data-bs-parent="#akkordeonFuehrer">
+                  <div class="accordion-body">
+                    Das Museum besteht aus zwei Einzelausstellungen: „Über Lenja“ und „Über Angelina“. Sie erreichen
+                    beide über den Menüpunkt „Ausstellungen“ in der Navigation. Am Ende Ihres Rundgangs finden Sie
+                    unter „Kontaktiere uns“ unser Gästebuch, in dem wir uns über Ihre Rückmeldung freuen.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Abschnitt 3 -->
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#fuehrer3" aria-expanded="false" aria-controls="fuehrer3">
+                    Hausordnung
+                  </button>
+                </h3>
+                <div id="fuehrer3" class="accordion-collapse collapse" data-bs-parent="#akkordeonFuehrer">
+                  <div class="accordion-body">
+                    Bitte berühren Sie die Exponate ausdrücklich, denn Klicken, Scrollen und Entdecken sind ausdrücklich
+                    erwünscht. Fotografieren ist erlaubt. Bitte nehmen Sie sich Zeit und lassen Sie sich inspirieren.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------
+         4) AUDIOGUIDE: Bootstrap-Modal + Sprachausgabe (JavaScript)
+         --------------------------------------------------------------- -->
+    <section class="section-audio" aria-labelledby="titel-audio">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8 text-center reveal">
+            <p class="eyebrow">Service</p>
+            <h2 id="titel-audio">Der Audioguide</h2>
+            <p class="section-sub">
+              Lassen Sie sich die Begrüßung des Museums vorlesen und genießen Sie den Rundgang mit geschlossenen Augen.
+            </p>
+
+            <!-- Button öffnet das Modal (data-bs-toggle="modal") -->
+            <button type="button" class="btn btn-museum" data-bs-toggle="modal" data-bs-target="#modalAudioguide">
+              Audioguide öffnen
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================
+       MODAL: Audioguide (interaktives Element Nr. 3)
+       Liegt außerhalb von <main>, weil es ein Overlay ist.
+       ================================================================= -->
+  <div class="modal fade museum-modal" id="modalAudioguide" tabindex="-1" aria-labelledby="modalAudioguideTitel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-4" id="modalAudioguideTitel">Audioguide</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Dieser Text wird von script.js vorgelesen (Web Speech API) -->
+          <p id="audioguideText">
+            Herzlich willkommen im Museum of Us. Wir freuen uns, dass Sie den Weg zu uns gefunden haben.
+            In den kommenden Sälen begegnen Sie zwei Studentinnen im ersten Semester, ihren Ideen und ihren Geschichten.
+            Wählen Sie im Menü eine Ausstellung und lassen Sie sich überraschen. Wir wünschen Ihnen einen inspirierenden Rundgang.
+          </p>
+          <!-- Statusmeldung (z. B. wenn der Browser keine Sprachausgabe unterstützt) -->
+          <p id="audioguideStatus" class="small audio-status" role="status" aria-live="polite"></p>
+
+          <!--
+            ALTERNATIVE MIT EIGENER AUDIODATEI (optional):
+            <audio controls src="audio/begruessung.mp3">Ihr Browser unterstützt kein Audio.</audio>
+          -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-museum" id="audioStart">▶ Abspielen</button>
+          <button type="button" class="btn btn-museum-outline" id="audioStop">■ Stopp</button>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
-  </body>
+
+  <!-- =================================================================
+       FUSSBEREICH
+       ================================================================= -->
+  <footer class="museum-footer">
+    <div class="container text-center">
+      <p class="footer-title">Museum of Us</p>
+      <p class="footer-text">Eine Vorstellungswebsite im Rahmen des Moduls Grundlagen Web-Programmierung</p>
+      <!-- Jahreszahl wird per JavaScript automatisch eingesetzt -->
+      <p class="footer-small">© <span id="jahr">2026</span> Lenja &amp; Angelina · Alle Rechte vorbehalten</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 JavaScript-Bundle (enthält Popper für das Dropdown) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Eigenes JavaScript: zuletzt laden, damit das HTML schon vorhanden ist -->
+  <script src="script.js"></script>
+</body>
+
 </html>
