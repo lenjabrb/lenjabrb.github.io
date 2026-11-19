@@ -81,76 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* -------------------------------------------------------------------
-     5. AUDIOGUIDE (Modal + Sprachausgabe)
-     Nutzt die Web Speech API (speechSynthesis), die in den meisten
-     modernen Browsern verfügbar ist. Es wird keine Audiodatei benötigt.
-     ------------------------------------------------------------------- */
-  const modal = document.getElementById("modalAudioguide");
-  const textElement = document.getElementById("audioguideText");
-  const statusElement = document.getElementById("audioguideStatus");
-  const startButton = document.getElementById("audioStart");
-  const stopButton = document.getElementById("audioStop");
-
-  const sprachausgabeVerfuegbar = "speechSynthesis" in window;
-
-  // Stoppt die Wiedergabe und setzt die Anzeige zurück
-  function stoppeAudio() {
-    if (sprachausgabeVerfuegbar) {
-      window.speechSynthesis.cancel();
-    }
-    if (textElement) textElement.classList.remove("is-speaking");
-    if (statusElement) statusElement.textContent = "";
-  }
-
-  // Startet die Wiedergabe
-  function starteAudio() {
-    if (!sprachausgabeVerfuegbar) {
-      statusElement.textContent =
-        "Leider unterstützt Ihr Browser keine Sprachausgabe. Sie können den Text oben lesen.";
-      return;
-    }
-
-    stoppeAudio(); // laufende Wiedergabe zuerst beenden
-
-    const rede = new SpeechSynthesisUtterance(textElement.textContent.trim());
-    rede.lang = "de-DE"; // deutsche Aussprache
-    rede.rate = 0.95;    // etwas langsamer = feierlicher
-
-    // Passende deutsche Stimme suchen, falls vorhanden
-    const stimmen = window.speechSynthesis.getVoices();
-    const deutscheStimme = stimmen.find(function (s) {
-      return s.lang && s.lang.toLowerCase().startsWith("de");
-    });
-    if (deutscheStimme) rede.voice = deutscheStimme;
-
-    rede.onstart = function () {
-      textElement.classList.add("is-speaking");
-      statusElement.textContent = "Der Audioguide spricht …";
-    };
-
-    rede.onend = function () {
-      textElement.classList.remove("is-speaking");
-      statusElement.textContent = "Ende der Führung. Vielen Dank fürs Zuhören!";
-    };
-
-    rede.onerror = function () {
-      textElement.classList.remove("is-speaking");
-      statusElement.textContent = "Die Wiedergabe konnte leider nicht gestartet werden.";
-    };
-
-    window.speechSynthesis.speak(rede);
-  }
-
-  // Buttons verbinden
-  if (startButton) startButton.addEventListener("click", starteAudio);
-  if (stopButton) stopButton.addEventListener("click", stoppeAudio);
-
-  // Beim Schließen des Modals (Kreuz, Esc, Klick daneben) wird die Wiedergabe beendet
-  if (modal) modal.addEventListener("hidden.bs.modal", stoppeAudio);
-
-  // Beim Verlassen oder Neuladen der Seite ebenfalls stoppen
-  window.addEventListener("beforeunload", stoppeAudio);
 
   /* -------------------------------------------------------------------
      6. JAHRESZAHL IM FOOTER
@@ -160,4 +90,4 @@ document.addEventListener("DOMContentLoaded", function () {
   if (jahrElement) {
     jahrElement.textContent = new Date().getFullYear();
   }
-});
+})

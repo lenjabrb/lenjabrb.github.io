@@ -32,11 +32,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="startseite">
 
   <!-- Skip-Link für Barrierefreiheit: Tastaturnutzer:innen können direkt zum Inhalt springen -->
   <a class="visually-hidden-focusable skip-link" href="#hauptinhalt">Zum Hauptinhalt springen</a>
-
   <!-- =================================================================
        KOPFBEREICH MIT NAVIGATION
        <header> + <nav> = semantische Elemente für Kopf und Navigation
@@ -117,17 +116,16 @@
             <div class="ornament reveal" aria-hidden="true"><span>◆</span></div>
 
             <!-- Begrüßung im Museumston -->
+            <!-- UX-Verbesserung: Text Anpassung -->
             <p class="lead-museum reveal">
-              Sehr geehrte Besucherinnen und Besucher, wir freuen uns, Sie in unseren Hallen willkommen zu heißen.
-              Treten Sie näher, nehmen Sie sich Zeit und lassen Sie sich von den Exponaten unserer Sammlung führen.
+              Sehr geehrte Besucherinnen und Besucher, wir freuen uns, Sie auf unserer Seite willkommen zu heißen.
+              Nehmen Sie sich Zeit und lassen Sie sich von den Exponaten unserer Sammlung führen.
             </p>
 
             <!-- Kurzeinführung: 3 Sätze zum Projekt und zur Gestaltungsidee -->
+            <!-- UX-Verbesserung: Text Anpassung -->
             <p class="intro reveal">
-              Das Museum of Us ist die persönliche Vorstellungswebsite von uns beiden, zwei Studentinnen im ersten Semester,
-              die sich hier als Team präsentieren. Wir haben die Form eines Museums gewählt, weil jeder Mensch eine Sammlung
-              aus Erfahrungen, Interessen und Fähigkeiten ist, die es verdient, wie ein Kunstwerk betrachtet zu werden.
-              Jede von uns erhält deshalb ihre eigene Ausstellung, und Sie können in Ihrem eigenen Tempo hindurchgehen.
+              Inspiriert wurden wir zu diesem Projekt durch einen aktuellen Social-Media-Trend: Viele gestalten derzeit ihr eigenes Museum of Us, indem sie Erinnerungen, Geschichten und winzige Bilder in goldenen Mini-Bilderrahmen samt kleinen Figuren in einem großen Rahmen platzieren. Diese Idee haben wir auf unsere persönliche Vorstellungswebsite übertragen. Als zwei Studentinnen im ersten Semester präsentieren wir uns hier gemeinsam als Team – in Form eines digitalen Museums. Denn jeder Mensch besteht aus einer einzigartigen Sammlung an Erfahrungen, Interessen und Fähigkeiten, die es verdient, wie ein Kunstwerk betrachtet zu werden. Jede von uns hat deshalb ihre eigene Ausstellung, durch die Sie ganz in Ihrem eigenen Tempo gehen können.
             </p>
 
             <!-- Zwei Buttons: führen zu den Ausstellungen -->
@@ -148,7 +146,6 @@
       <div class="container">
 
         <header class="section-header text-center reveal">
-          <p class="eyebrow">Saal I</p>
           <h2 id="titel-highlights">Highlights der Sammlung</h2>
           <p class="section-sub">Ein erster Blick auf drei besondere Exponate.</p>
         </header>
@@ -250,7 +247,6 @@
       <div class="container">
 
         <header class="section-header text-center reveal">
-          <p class="eyebrow">Saal II</p>
           <h2 id="titel-fuehrer">Ihr Museumsführer</h2>
           <p class="section-sub">Alles Wissenswerte für Ihren Rundgang.</p>
         </header>
@@ -304,9 +300,9 @@
                   </button>
                 </h3>
                 <div id="fuehrer3" class="accordion-collapse collapse" data-bs-parent="#akkordeonFuehrer">
+                  <!-- UX-Verbesserung: Text Anpassung -->
                   <div class="accordion-body">
-                    Bitte berühren Sie die Exponate ausdrücklich, denn Klicken, Scrollen und Entdecken sind ausdrücklich
-                    erwünscht. Fotografieren ist erlaubt. Bitte nehmen Sie sich Zeit und lassen Sie sich inspirieren.
+                    Klicken, Scrollen und Entdecken sind ausdrücklich erwünscht. Screenshots sind erlaubt. Bitte nehmen Sie sich Zeit und lassen Sie sich inspirieren.
                   </div>
                 </div>
               </div>
@@ -315,64 +311,6 @@
         </div>
       </div>
     </section>
-
-    <!-- ---------------------------------------------------------------
-         4) AUDIOGUIDE: Bootstrap-Modal + Sprachausgabe (JavaScript)
-         --------------------------------------------------------------- -->
-    <section class="section-audio" aria-labelledby="titel-audio">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-8 text-center reveal">
-            <p class="eyebrow">Service</p>
-            <h2 id="titel-audio">Der Audioguide</h2>
-            <p class="section-sub">
-              Lassen Sie sich die Begrüßung des Museums vorlesen und genießen Sie den Rundgang mit geschlossenen Augen.
-            </p>
-
-            <!-- Button öffnet das Modal (data-bs-toggle="modal") -->
-            <button type="button" class="btn btn-museum" data-bs-toggle="modal" data-bs-target="#modalAudioguide">
-              Audioguide öffnen
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- =================================================================
-       MODAL: Audioguide (interaktives Element Nr. 3)
-       Liegt außerhalb von <main>, weil es ein Overlay ist.
-       ================================================================= -->
-  <div class="modal fade museum-modal" id="modalAudioguide" tabindex="-1" aria-labelledby="modalAudioguideTitel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title fs-4" id="modalAudioguideTitel">Audioguide</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Dieser Text wird von script.js vorgelesen (Web Speech API) -->
-          <p id="audioguideText">
-            Herzlich willkommen im Museum of Us. Wir freuen uns, dass Sie den Weg zu uns gefunden haben.
-            In den kommenden Sälen begegnen Sie zwei Studentinnen im ersten Semester, ihren Ideen und ihren Geschichten.
-            Wählen Sie im Menü eine Ausstellung und lassen Sie sich überraschen. Wir wünschen Ihnen einen inspirierenden Rundgang.
-          </p>
-          <!-- Statusmeldung (z. B. wenn der Browser keine Sprachausgabe unterstützt) -->
-          <p id="audioguideStatus" class="small audio-status" role="status" aria-live="polite"></p>
-
-          <!--
-            ALTERNATIVE MIT EIGENER AUDIODATEI (optional):
-            <audio controls src="audio/begruessung.mp3">Ihr Browser unterstützt kein Audio.</audio>
-          -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-museum" id="audioStart">▶ Abspielen</button>
-          <button type="button" class="btn btn-museum-outline" id="audioStop">■ Stopp</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- =================================================================
        FUSSBEREICH

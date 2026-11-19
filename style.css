@@ -97,7 +97,14 @@ body {
   --schrift-titel: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --schrift-text: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
-
+/* UX-Verbesserung: Hintergrund ändern, da das Logo beim Lesen stört */
+body.startseite {
+  background-image: url("../images/hintergrundrosa.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 /* ---------------------------------------------------------------------
    2. GRUNDLAGEN
    --------------------------------------------------------------------- */
@@ -181,7 +188,13 @@ h1, h2, h3, h4 {
   padding: 0.6rem 1rem;
   position: relative;
 }
-
+/* UX-Verbesserung: Button besser sichtbar */
+.museum-navbar .navbar-toggler {
+  --bs-navbar-toggler-border-color: var(--farbe-creme);
+  border-width: 2px;
+  min-width: 48px;
+  min-height: 48px;
+}
 /* Feine Linie unter dem aktiven bzw. überfahrenen Menüpunkt (nur Desktop) */
 @media (min-width: 992px) {
   .museum-navbar .nav-link::after {
@@ -325,11 +338,32 @@ h1, h2, h3, h4 {
    --------------------------------------------------------------------- */
 .museum-carousel {
   background-color: var(--farbe-weinrot);
-  padding: 1.25rem 1.25rem 3.25rem;       /* unten Platz für die Indikatoren */
+  padding: 1.25rem 1.25rem 5rem;       /* unten Platz für die Indikatoren */ /* UX-Verbesserung: Abstand nach unten, damit die Pfeile nicht überlappen */
   box-shadow: 0 18px 40px rgba(60, 15, 28, 0.35);
   border: 1px solid var(--farbe-weinrot-dunkel);
 }
-
+/* UX-Verbesserung: Pfeile sollen nicht im Bild liegen */
+.museum-carousel .carousel-control-prev,
+.museum-carousel .carousel-control-next {
+  top: auto;
+  bottom: 0.5rem;
+  width: 48px;
+  height: 48px;
+  opacity: 1;
+  background-color: var(--farbe-creme);
+  border-radius: 50%;
+}
+/* UX-Verbesserung: Position der Pfeile vom Rand */
+.museum-carousel .carousel-control-prev { 
+  left: 1rem; 
+}
+.museum-carousel .carousel-control-next { 
+  right: 1rem; 
+}
+.museum-carousel .carousel-control-prev-icon,
+.museum-carousel .carousel-control-next-icon {
+  filter: invert(1);   /* UX-Verbesserung: weißer Pfeil wird schwarz, weil Bootstrap die Pfeile standartmäßig weiß macht, wir den Pfeil aber sichtbarer haben möchten*/
+}
 .exhibit {
   margin: 0;
 }
@@ -364,7 +398,7 @@ h1, h2, h3, h4 {
 .exhibit-plaque {
   text-align: center;
   color: var(--farbe-creme);
-  padding: 1.75rem 3rem 0.5rem;            /* seitlich Platz für die Pfeile */
+  padding: 1.75rem 0.5rem 0.5rem;            /* seitlich Platz für die Pfeile */ /* UX-Verbesserung: seitlicher Platz wird nicht mehr gebraucht */
 }
 
 .exhibit-plaque h3 {
@@ -481,36 +515,6 @@ h1, h2, h3, h4 {
   background-color: var(--farbe-weinrot);
   color: var(--farbe-creme);
   transform: translateY(-2px);
-}
-
-/* ---------------------------------------------------------------------
-   9. MODAL (Audioguide)
-   --------------------------------------------------------------------- */
-.museum-modal .modal-content {
-  background-color: var(--farbe-rosa);
-  border: 2px solid var(--farbe-weinrot);
-  border-radius: 0;
-}
-
-.museum-modal .modal-header,
-.museum-modal .modal-footer {
-  border-color: rgba(120, 43, 61, 0.3);
-}
-
-.museum-modal .modal-title {
-  font-family: var(--schrift-titel);
-  color: var(--farbe-weinrot);
-}
-
-.audio-status {
-  color: var(--farbe-weinrot);
-  min-height: 1.5rem;
-  margin-bottom: 0;
-}
-
-/* Wird gesetzt, solange der Audioguide spricht (siehe script.js) */
-.is-speaking {
-  opacity: 0.85;
 }
 
 /* ---------------------------------------------------------------------
