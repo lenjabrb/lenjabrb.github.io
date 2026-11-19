@@ -1,3 +1,4 @@
+/* Index Seite */
 body {
   background-image: url("images/hintergrund.jpg");
   background-size: cover;
@@ -5,16 +6,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
-}
-h1 {
-    font-family: 'Imperial Script', cursive;
-    font-size: 70px;
-    font-weight: 400;
-}
-.btn-museum {
-    background-color: #f5e5e5;
-    color: #000000;
-    border: 1px solid #f5e5e5;
 }
 /* Kontaktbereich */
 .Kontakt-container {
