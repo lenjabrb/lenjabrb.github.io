@@ -7,6 +7,9 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
 }
+.text-center {
+  padding-top: 35px;
+}
 /* Kontaktbereich */
 .Kontakt-container {
     max-width: 650px;
