@@ -18,24 +18,39 @@
         <p>Du hast Fragen oder möchtest Kontakt aufnehmen? Dann kannst du uns gerne eine Nachricht senden
 
     </p>
-    <form class="kontakt-formular">
+    <form class="kontakt-formular" onsubmit="nachrichtSenden(event)">
         <label for="name">Dein Name:</label>
-        <input type="text" id="name" placeholder="Name eingeben"
+        <input type="text" id="name" placeholder="Name eingeben" required>
 
         <label for="email">Deine E-Mail-Adresse:</label>
-        <input type="email" id="email" placeholder="E-Mail eingeben">
+        <input type="email" id="email" placeholder="E-Mail eingeben" required>
 
         <label for="betreff">Betreff:</label>
-        <input type="text" id="betreff" placeholder="Betreff eingeben">
+        <input type="text" id="betreff" placeholder="Betreff eingeben" required>
 
         <label for="nachricht">Deine Nachricht:</label>
-        <textarea id="nachricht" rows="6" placeholder="Schreibe deine Nachricht..."></textarea>
+        <textarea id="nachricht" rows="6" placeholder="Schreibe deine Nachricht..." required></textarea>
 
         <button type="submit">Nachricht senden</button>
 
     </form>
 
      </main>
+     
+     <script>
+        function nachrichtSenden(event) {
+            event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+
+            // Hier kannst du den Code hinzufügen, um die Nachricht zu verarbeiten,
+            // z.B. sie an einen Server zu senden oder in einer Datenbank zu speichern.
+
+            // Beispiel: Zeige eine Bestätigungsmeldung an
+            alert("Vielen Dank für deine Nachricht! Wir werden uns so schnell wie möglich bei dir melden.");
+            
+            // Optional: Formular zurücksetzen
+            document.querySelector('.kontakt-formular').reset();
+        }
+     </script>
 
     </body>
     </html>
