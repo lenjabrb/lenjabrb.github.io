@@ -83,3 +83,878 @@ body {
 .Kontakt-container button:hover {
     background-color: #e8c5d0;
 }
+
+/* =====================================================================
+   MUSEUM OF US – style.css
+   Eigene Gestaltung zusätzlich zu Bootstrap 5.3
+   Aufbau:
+     1. Variablen (Farben, Schriften)
+     2. Grundlagen
+     3. Navigation
+     4. Eingangshalle (Hero)
+     5. Allgemeine Abschnitte
+     6. Karussell
+     7. Akkordeon
+     8. Buttons
+     9. Modal
+    10. Footer
+    11. Animationen & Barrierefreiheit
+    12. Responsive Anpassungen
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. VARIABLEN
+   Zentrale Stelle für Farben und Schriften: einmal ändern, überall wirksam
+   --------------------------------------------------------------------- */
+:root {
+  --farbe-rosa: #f5e5e5;        /* Hauptfarbe für Hintergründe */
+  --farbe-weinrot: #782b3d;     /* Akzentfarbe für Überschriften, Buttons, Navigation */
+  --farbe-weinrot-dunkel: #5c1f2d; /* etwas dunkler für Hover-Effekte */
+  --farbe-creme: #dfdfdb;       /* Text auf weinroten Flächen */
+  --farbe-schwarz: #1a1a1a;     /* Text auf rosa Flächen (weiches Schwarz) */
+  --farbe-rosa-dunkel: #ecd3d3; /* leicht dunkleres Rosa für abwechselnde Abschnitte */
+
+  --schrift-titel: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --schrift-text: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+/* UX-Verbesserung: Hintergrund ändern, da das Logo beim Lesen stört */
+body.startseite {
+  background-image: url("../images/hintergrundrosa.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+/* ---------------------------------------------------------------------
+   2. GRUNDLAGEN
+   --------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;   /* sanftes Scrollen bei Ankerlinks */
+}
+
+body {
+  background-color: var(--farbe-rosa);
+  color: var(--farbe-schwarz);
+  font-family: var(--schrift-text);
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+/* Überschriften in der eleganten Serifenschrift, weinrot */
+h1, h2, h3, h4 {
+  font-family: var(--schrift-titel);
+  color: var(--farbe-weinrot);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Sprunglink für Tastaturnutzer:innen */
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2000;
+  background: var(--farbe-weinrot);
+  color: var(--farbe-creme);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+/* Kleine Zeile über Überschriften (wie Saalnummern im Museum) */
+.eyebrow {
+  font-family: var(--schrift-text);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--farbe-weinrot);
+  margin-bottom: 0.75rem;
+}
+
+/* ---------------------------------------------------------------------
+   3. NAVIGATION
+   --------------------------------------------------------------------- */
+.museum-navbar {
+  background-color: var(--farbe-weinrot);
+  border-bottom: 3px double var(--farbe-creme);  /* doppelte Linie wirkt wie ein Rahmen */
+  padding-block: 0.75rem;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Schatten, sobald gescrollt wurde (Klasse wird in script.js gesetzt) */
+.museum-navbar.is-scrolled {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.museum-navbar .navbar-brand {
+  font-family: var(--schrift-titel);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--farbe-creme);
+  letter-spacing: 0.04em;
+}
+
+/* Das kleine "of" in kursiv */
+.brand-of {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.museum-navbar .nav-link {
+  color: var(--farbe-creme);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+  position: relative;
+}
+/* UX-Verbesserung: Button besser sichtbar */
+.museum-navbar .navbar-toggler {
+  --bs-navbar-toggler-border-color: var(--farbe-creme);
+  border-width: 2px;
+  min-width: 48px;
+  min-height: 48px;
+}
+/* Feine Linie unter dem aktiven bzw. überfahrenen Menüpunkt (nur Desktop) */
+@media (min-width: 992px) {
+  .museum-navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.25rem;
+    height: 1px;
+    background: var(--farbe-creme);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .museum-navbar .nav-link:hover::after,
+  .museum-navbar .nav-link.active::after,
+  .museum-navbar .nav-link.show::after {
+    transform: scaleX(1);
+  }
+}
+
+.museum-navbar .nav-link:hover,
+.museum-navbar .nav-link:focus,
+.museum-navbar .nav-link.active {
+  color: #ffffff;
+}
+
+/* Dropdown-Menü im Museumsstil */
+.museum-dropdown {
+  background-color: var(--farbe-rosa);
+  border: 1px solid var(--farbe-weinrot);
+  border-radius: 0;
+  margin-top: 0.5rem;
+}
+
+.museum-dropdown .dropdown-item {
+  font-family: var(--schrift-titel);
+  font-size: 1.15rem;
+  color: var(--farbe-weinrot);
+  padding: 0.6rem 1.5rem;
+}
+
+.museum-dropdown .dropdown-item:hover,
+.museum-dropdown .dropdown-item:focus {
+  background-color: var(--farbe-weinrot);
+  color: var(--farbe-creme);
+}
+
+/* ---------------------------------------------------------------------
+   4. EINGANGSHALLE (HERO)
+   --------------------------------------------------------------------- */
+.hero {
+  padding-block: clamp(3rem, 9vw, 7rem);  /* flexibler Abstand je nach Bildschirmbreite */
+  /* Dezenter Verlauf, der an eine Museumswand im Spotlight erinnert */
+  background: radial-gradient(ellipse at top, #fbf1f1 0%, var(--farbe-rosa) 65%);
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 7vw, 5rem);    /* skaliert zwischen Smartphone und Desktop */
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.title-accent {
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Verzierung: Linie – Raute – Linie */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--farbe-weinrot);
+  margin: 1.5rem auto 2rem;
+  max-width: 260px;
+}
+
+.ornament::before,
+.ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--farbe-weinrot);
+}
+
+.lead-museum {
+  font-family: var(--schrift-titel);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--farbe-weinrot);
+}
+
+.intro {
+  font-size: 1.05rem;
+  max-width: 62ch;                        
+  margin-inline: auto;
+  margin-top: 1.5rem;
+}
+
+.side-image {
+    width: 190%;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+}
+
+.left-image {
+    transform: rotate(-8deg);
+    left: -180px
+}
+
+.right-image {
+    transform: rotate(8deg);
+    right: -80px
+}
+
+/* ---------------------------------------------------------------------
+   5. ALLGEMEINE ABSCHNITTE
+   --------------------------------------------------------------------- */
+.section-gallery,
+.section-guide,
+.section-audio {
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+}
+
+/* Abwechselnde Hintergründe sorgen für Rhythmus wie wechselnde Wandfarben */
+.section-gallery {
+  background-color: var(--farbe-rosa-dunkel);
+  border-top: 1px solid rgba(120, 43, 61, 0.25);
+  border-bottom: 1px solid rgba(120, 43, 61, 0.25);
+}
+
+.section-audio {
+  background-color: var(--farbe-rosa-dunkel);
+  border-top: 1px solid rgba(120, 43, 61, 0.25);
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+}
+
+.section-header h2,
+.section-audio h2 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  max-width: 55ch;
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------------------------
+   6. KARUSSELL (Exponate)
+   --------------------------------------------------------------------- */
+.museum-carousel {
+  background-color: var(--farbe-weinrot);
+  padding: 1.25rem 1.25rem 5rem;       /* unten Platz für die Indikatoren */ /* UX-Verbesserung: Abstand nach unten, damit die Pfeile nicht überlappen */
+  box-shadow: 0 18px 40px rgba(60, 15, 28, 0.35);
+  border: 1px solid var(--farbe-weinrot-dunkel);
+}
+/* UX-Verbesserung: Pfeile sollen nicht im Bild liegen */
+.museum-carousel .carousel-control-prev,
+.museum-carousel .carousel-control-next {
+  top: auto;
+  bottom: 0.5rem;
+  width: 48px;
+  height: 48px;
+  opacity: 1;
+  background-color: var(--farbe-creme);
+  border-radius: 50%;
+}
+/* UX-Verbesserung: Position der Pfeile vom Rand */
+.museum-carousel .carousel-control-prev { 
+  left: 1rem; 
+}
+.museum-carousel .carousel-control-next { 
+  right: 1rem; 
+}
+.museum-carousel .carousel-control-prev-icon,
+.museum-carousel .carousel-control-next-icon {
+  filter: invert(1);   /* UX-Verbesserung: weißer Pfeil wird schwarz, weil Bootstrap die Pfeile standartmäßig weiß macht, wir den Pfeil aber sichtbarer haben möchten*/
+}
+.exhibit {
+  margin: 0;
+}
+
+/* Bilderrahmen-Platzhalter: goldener Look wird bewusst vermieden, wir bleiben im Farbschema */
+.exhibit-frame {
+  aspect-ratio: 16 / 10;                   /* gleichbleibendes Seitenverhältnis */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5e5e5 0%, #e6c9cf 100%);
+  border: 10px solid var(--farbe-creme);
+  outline: 1px solid var(--farbe-creme);
+  outline-offset: 6px;
+  font-family: var(--schrift-titel);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-style: italic;
+  color: var(--farbe-weinrot);
+}
+
+/* Falls ihr echte Bilder einsetzt: gleiche Rahmung */
+.exhibit-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 10px solid var(--farbe-creme);
+  outline: 1px solid var(--farbe-creme);
+  outline-offset: 6px;
+}
+
+/* Beschriftungsschild unter dem Exponat */
+.exhibit-plaque {
+  text-align: center;
+  color: var(--farbe-creme);
+  padding: 1.75rem 0.5rem 0.5rem;            /* seitlich Platz für die Pfeile */ /* UX-Verbesserung: seitlicher Platz wird nicht mehr gebraucht */
+}
+
+.exhibit-plaque h3 {
+  color: var(--farbe-creme);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  margin-bottom: 0.4rem;
+}
+
+.exhibit-plaque p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.museum-carousel .carousel-indicators {
+  margin-bottom: 0.9rem;
+}
+
+.museum-carousel .carousel-indicators [data-bs-target] {
+  background-color: var(--farbe-creme);
+}
+
+.carousel-counter {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--farbe-weinrot);
+}
+
+/* ---------------------------------------------------------------------
+   7. AKKORDEON (Museumsführer)
+   Bootstrap-Variablen werden überschrieben, damit die Farben passen
+   --------------------------------------------------------------------- */
+.museum-accordion {
+  --bs-accordion-bg: transparent;
+  --bs-accordion-border-color: var(--farbe-weinrot);
+  --bs-accordion-border-radius: 0;
+  --bs-accordion-inner-border-radius: 0;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(120, 43, 61, 0.3);
+  --bs-accordion-active-bg: var(--farbe-weinrot);
+  --bs-accordion-active-color: var(--farbe-creme);
+}
+
+.museum-accordion .accordion-item {
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.museum-accordion .accordion-button {
+  font-family: var(--schrift-titel);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--farbe-weinrot);
+  background-color: var(--farbe-rosa);
+  padding: 1.1rem 1.5rem;
+}
+
+/* Geöffneter Abschnitt: weinroter Hintergrund, cremefarbene Schrift */
+.museum-accordion .accordion-button:not(.collapsed) {
+  background-color: var(--farbe-weinrot);
+  color: var(--farbe-creme);
+}
+
+/* Pfeil-Icon im geöffneten Zustand hell einfärben */
+.museum-accordion .accordion-button:not(.collapsed)::after {
+  filter: brightness(0) invert(0.87);
+}
+
+.museum-accordion .accordion-body {
+  background-color: #fbf1f1;
+  color: var(--farbe-schwarz);
+  padding: 1.5rem;
+}
+
+/* ---------------------------------------------------------------------
+   8. BUTTONS
+   --------------------------------------------------------------------- */
+.btn-museum,
+.btn-museum-outline {
+  font-family: var(--schrift-text);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0;                         /* eckig wirkt klassisch */
+  border: 2px solid var(--farbe-weinrot);
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+/* Gefüllter Button */
+.btn-museum {
+  background-color: var(--farbe-weinrot);
+  color: var(--farbe-creme);
+}
+
+.btn-museum:hover,
+.btn-museum:focus {
+  background-color: var(--farbe-weinrot-dunkel);
+  border-color: var(--farbe-weinrot-dunkel);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Button nur mit Rand */
+.btn-museum-outline {
+  background-color: transparent;
+  color: var(--farbe-weinrot);
+}
+
+.btn-museum-outline:hover,
+.btn-museum-outline:focus {
+  background-color: var(--farbe-weinrot);
+  color: var(--farbe-creme);
+  transform: translateY(-2px);
+}
+
+/* ---------------------------------------------------------------------
+   10. FOOTER
+   --------------------------------------------------------------------- */
+.museum-footer {
+  background-color: var(--farbe-weinrot);
+  color: var(--farbe-creme);
+  padding-block: 3rem;
+  border-top: 3px double var(--farbe-creme);
+}
+
+.footer-title {
+  font-family: var(--schrift-titel);
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.footer-text {
+  margin-bottom: 0.5rem;
+}
+
+.footer-small {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------------
+   11. ANIMATIONEN & BARRIEREFREIHEIT
+   --------------------------------------------------------------------- */
+
+/* Einblend-Effekt: Elemente mit .reveal erscheinen beim Scrollen (script.js setzt .is-visible).
+   Die Klasse .js-aktiv wird nur gesetzt, wenn JavaScript läuft –
+   ohne JavaScript bleibt alles sichtbar. */
+.js-aktiv .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.js-aktiv .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sichtbarer Fokus für Tastaturbedienung */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--farbe-weinrot);
+  outline-offset: 3px;
+}
+
+.museum-navbar a:focus-visible,
+.museum-navbar button:focus-visible,
+.museum-carousel button:focus-visible {
+  outline-color: var(--farbe-creme);
+}
+
+/* Nutzer:innen, die weniger Bewegung wünschen, bekommen keine Animationen */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js-aktiv .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn-museum,
+  .btn-museum-outline {
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   12. RESPONSIVE ANPASSUNGEN
+   Bootstrap übernimmt das Grundraster, hier nur Feinschliff
+   --------------------------------------------------------------------- */
+
+/* Tablet und kleiner (< 992px): Menü ist eingeklappt */
+@media (max-width: 991.98px) {
+  .museum-navbar .navbar-collapse {
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(223, 223, 219, 0.3);
+    margin-top: 0.75rem;
+  }
+
+  .museum-dropdown {
+    background-color: transparent;
+    border: none;
+    padding-left: 1rem;
+  }
+
+  .museum-dropdown .dropdown-item {
+    color: var(--farbe-creme);
+  }
+}
+
+/* Smartphone (< 576px) */
+@media (max-width: 575.98px) {
+  .museum-carousel {
+    padding: 0.75rem 0.75rem 3rem;
+  }
+
+  .exhibit-frame,
+  .exhibit-img {
+    border-width: 6px;
+    outline-offset: 4px;
+  }
+
+  .exhibit-plaque {
+    padding: 1.25rem 0.5rem 0.25rem;
+  }
+
+  /* Pfeile verkleinern, damit sie das Bild nicht verdecken */
+  .museum-carousel .carousel-control-prev,
+  .museum-carousel .carousel-control-next {
+    width: 12%;
+  }
+
+  .btn-museum,
+  .btn-museum-outline {
+    width: 100%;                            /* volle Breite = leicht mit dem Daumen zu treffen */
+  }
+
+  .modal-footer .btn {
+    width: auto;
+  }
+}
+/* Ausstellung Lenja */
+
+.lenja-intro {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+/* Große Überschrift */
+.lenja-intro h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5vw, 65px);
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* Beschreibungstext */
+.lenja-intro-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    line-height: 1.9;
+    color: #555;
+}
+
+.lenja-portrait-frame img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+}
+
+/* Urlaubsorte Bilder anordnen */
+.reise-galerie {
+  column-count: 2;
+  column-gap: 20px;
+}
+
+.reise-bild {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 20px;
+}
+
+.reise-bild img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.reise-ort {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: black;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 5px 10px;
+  font-size: 14px;
+}
+.reise-beschreibung {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+/* Bildergalerie aus dem Archiv */
+.lenja-archiv {
+  margin-top: 80px;
+}
+
+.archiv-galerie {
+  column-count: 3;
+  column-gap: 15px;
+}
+
+.archiv-bild {
+  break-inside: avoid;
+  margin-bottom: 15px;
+}
+
+.archiv-bild img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Kontaktbereich */
+.Kontakt-container {
+    max-width: 650px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+/* Überschrift */
+.Kontakt-container h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Beschreibungstext */
+.Kontakt-container p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Beschriftungen */
+.Kontakt-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Eingabefelder */
+.Kontakt-container input,
+.Kontakt-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #e8c5d0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+/* Absende-Button */
+.Kontakt-container button {
+    background-color: #f5e5e5;
+    color: #000000;
+    border: 1px solid #e8c5d0;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Button beim Darüberfahren */
+.Kontakt-container button:hover {
+    background-color: #e8c5d0;
+}
+
+body.ueber-mich-seite {
+    background-image: url("./images/hintergrund3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Navigation nur auf Angelinas Seite */
+.ueber-mich-seite .navbar {
+    background-color: #f8dce6;
+}
+
+.ueber-mich-seite .navbar-brand {
+    color: #880e4f;
+    font-weight: bold;
+}
+
+.ueber-mich-seite .nav-link {
+    color: #880e4f;
+}
+
+
+/* Begrüßungsbereich */
+.about-header {
+    background-color: #f8dce6;
+    padding: 90px 20px;
+}
+
+.about-header h1 {
+    color: #880e4f;
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.small-heading {
+    color: #b04b78;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Buttons */
+.pink-button {
+    background-color: #880e4f;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 22px;
+    border: none;
+    transition: 0.3s;
+}
+
+.pink-button:hover {
+    background-color: #bd648d;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Portrait */
+.portrait {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Facts-Bereich */
+.facts-section {
+    background-color: #fceaf0;
+}
+
+.fact-card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(136, 14, 79, 0.10);
+    transition: 0.3s;
+}
+
+.fact-card:hover {
+    transform: translateY(-5px);
+}
+
+.fact-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.fact-card h5 {
+    color: #880e4f;
+    font-weight: bold;
+}
+
+/* Zufälliger Fact */
+.fact-box {
+    background-color: #f8dce6;
+    padding: 35px;
+    border-radius: 20px;
+    max-width: 550px;
+    margin: 30px auto;
+}
+
+#randomFact {
+    color: #880e4f;
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+/* Footer */
+footer {
+    background-color: #f8dce6;
+    color: #880e4f;
+}
+
+footer a {
+    color: #880e4f;
+}
+
+/* Mobile Ansicht */
+@media (max-width: 576px) {
+
+    .about-header {
+        padding: 60px 15px;
+    }
+
+    .about-header h1 {
+        font-size: 32px;
+    }
+
+    .portrait {
+        width: 240px;
+        height: 280px;
+    }
+
+}
