@@ -20,6 +20,7 @@
 
     <a class="visually-hidden-focusable skip-link" href="#hauptinhalt">Zum Hauptinhalt springen</a>
 
+    <header>
     <nav class="navbar navbar-expand-lg sticky-top museum-navbar" data-bs-theme="dark" aria-label="Hauptnavigation">
         <div class="container">
 
@@ -45,7 +46,8 @@
 
                         <ul class="dropdown-menu dropdown-menu-end museum-dropdown" aria-labelledby="dropdownAusstellungen">
                             <li><a class="dropdown-item" href="lenja.html">Über Lenja</a></li>
-                            <li><a class="dropdown-item" href="angelina.html">Über Angelina</a></li>
+                            <!-- FIX 6: active und aria-current="page" ergänzt -->
+                            <li><a class="dropdown-item active" aria-current="page" href="angelina.html">Über Angelina</a></li>
                         </ul>
                     </li>
 
@@ -57,12 +59,9 @@
             </div>
         </div>
     </nav>
+    </header>
 
     <main id="hauptinhalt">
-
-
-
-
 
         <header class=" about-header text-center">
             <div class="container">
@@ -132,9 +131,11 @@
                                         class="card-img-top" 
                                         alt="Motorfliegen">
 
-                                   <div class="card-body" text-center">
+                                   <!-- FIX 1: class="card-body text-center" korrekt geschrieben -->
+                                   <div class="card-body text-center">
                         
-                                        <h5> Motorfliegen</h5>
+                                        <!-- FIX 4: h3 mit Klasse h5 statt h5 (Überschriften-Hierarchie) -->
+                                        <h3 class="h5"> Motorfliegen</h3>
                                         <p>
                                             Schon als Kind bin ich mit meinem Vater mit einem kleinen Motorflugzeug geflogen. Es ist ein wirklich tolles Gefühl, die Welt von oben zu sehen und die Freiheit zu spüren. Es ist gleichzeitig friedlich, aufregend und faszinierend.
                                         </p>
@@ -156,7 +157,7 @@
 
                                      <div class="card-body text-center">
 
-                                          <h5>Musik</h5>
+                                          <h3 class="h5">Musik</h3>
 
                                           <p> 
                                               Musik gehört für mich einfach zum Alltag. Einer meiner absoluten Lieblingskünstler ist The Weeknd. Keines seiner Konzerte habe ich verpasst.
@@ -175,7 +176,7 @@
 
                                      <div class="card-body text-center">
 
-                                          <h5>Spanien und Reisen</h5>
+                                          <h3 class="h5">Spanien und Reisen</h3>
                                           <p>
                                               Am liebsten verbinge ich meine Urlaube in Spanien. Genauer gesagt auf der größten balearischen Insel in einem kleinen östlich gelegenen Ort namens Cala Dor.
 
@@ -193,10 +194,16 @@
              
              </main>
 
+<footer class="museum-footer">
+    <div class="container text-center">
+        <p class="footer-title">Museum of Us</p>
+        <p class="footer-text">Eine Vorstellungswebsite im Rahmen des Moduls Grundlagen Web-Programmierung</p>
+        <p class="footer-small">© <span id="jahr">2026</span> Lenja &amp; Angelina · Alle Rechte vorbehalten</p>
+    </div>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
 
 </body>
-</html>      
-
-                        
-                
+</html>             

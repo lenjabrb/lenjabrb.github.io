@@ -452,7 +452,7 @@ h1, h2, h3, h4 {
 .exhibit-plaque {
   text-align: center;
   color: var(--farbe-creme);
-  padding: 1.75rem 0.5rem 0.5rem;            /* seitlich Platz für die Pfeile */ /* UX-Verbesserung: seitlicher Platz wird nicht mehr gebraucht */
+  padding: 1.75rem 5rem 0.5rem;
 }
 
 .exhibit-plaque h3 {
@@ -464,6 +464,20 @@ h1, h2, h3, h4 {
 .exhibit-plaque p {
   margin: 0;
   font-size: 0.95rem;
+}
+@media (max-width: 576px) {
+  .museum-carousel .exhibit-plaque {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+
+  .museum-carousel .carousel-control-prev {
+    left: 0.25rem;
+  }
+
+  .museum-carousel .carousel-control-next {
+    right: 0.25rem;
+  }
 }
 
 .museum-carousel .carousel-indicators {
@@ -726,8 +740,8 @@ button:focus-visible {
 
 .lenja-portrait-frame img {
     width: 100%;
-    height: 480px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Urlaubsorte Bilder anordnen */
@@ -780,6 +794,27 @@ button:focus-visible {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Anpassungen für die Handy-Ansicht */
+@media (max-width: 767px) {
+
+    /* Abstand zwischen Navbar und Begrüßung */
+    .lenja-intro {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+
+    /* Abstand zwischen Text und Bild */
+    .lenja-intro .col-md-6 {
+        margin-bottom: 15px;
+    }
+
+    /* Abstand vor "Mehr als nur Gegenstände" */
+    .lenja-objekte {
+        margin-top: 10px;
+    }
+
 }
 
 /* Kontaktbereich */
