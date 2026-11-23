@@ -325,7 +325,8 @@ h1, h2, h3, h4 {
 }
 
 .left-image {
-    display: none;
+    transform: rotate(-8deg);
+    right: 180px
 }
 
 .right-image {
@@ -341,8 +342,7 @@ h1, h2, h3, h4 {
     }
 
     .left-image {
-        left: 0;
-        transform: rotate(5deg);
+        display:none;
     }
 
     .right-image {
@@ -422,21 +422,6 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
-/* Bilderrahmen-Platzhalter: goldener Look wird bewusst vermieden, wir bleiben im Farbschema */
-.exhibit-frame {
-  aspect-ratio: 16 / 10;                   /* gleichbleibendes Seitenverhältnis */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f5e5e5 0%, #e6c9cf 100%);
-  border: 10px solid var(--farbe-creme);
-  outline: 1px solid var(--farbe-creme);
-  outline-offset: 6px;
-  font-family: var(--schrift-titel);
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
-  font-style: italic;
-  color: var(--farbe-weinrot);
-}
 
 /* Falls ihr echte Bilder einsetzt: gleiche Rahmung */
 .exhibit-img {
@@ -452,7 +437,7 @@ h1, h2, h3, h4 {
 .exhibit-plaque {
   text-align: center;
   color: var(--farbe-creme);
-  padding: 1.75rem 0.5rem 0.5rem;            /* seitlich Platz für die Pfeile */ /* UX-Verbesserung: seitlicher Platz wird nicht mehr gebraucht */
+  padding: 1.75rem 5rem 0.5rem;
 }
 
 .exhibit-plaque h3 {
@@ -464,6 +449,20 @@ h1, h2, h3, h4 {
 .exhibit-plaque p {
   margin: 0;
   font-size: 0.95rem;
+}
+@media (max-width: 576px) {
+  .museum-carousel .exhibit-plaque {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+
+  .museum-carousel .carousel-control-prev {
+    left: 0.25rem;
+  }
+
+  .museum-carousel .carousel-control-next {
+    right: 0.25rem;
+  }
 }
 
 .museum-carousel .carousel-indicators {
@@ -726,8 +725,8 @@ button:focus-visible {
 
 .lenja-portrait-frame img {
     width: 100%;
-    height: 480px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Urlaubsorte Bilder anordnen */
@@ -780,6 +779,27 @@ button:focus-visible {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Anpassungen für die Handy-Ansicht */
+@media (max-width: 767px) {
+
+    /* Abstand zwischen Navbar und Begrüßung */
+    .lenja-intro {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+
+    /* Abstand zwischen Text und Bild */
+    .lenja-intro .col-md-6 {
+        margin-bottom: 15px;
+    }
+
+    /* Abstand vor "Mehr als nur Gegenstände" */
+    .lenja-objekte {
+        margin-top: 10px;
+    }
+
 }
 
 /* Kontaktbereich */
@@ -848,19 +868,7 @@ body.ueber-mich-seite {
     min-height: 100vh;
 }
 
-/* Navigation nur auf Angelinas Seite */
-.ueber-mich-seite .navbar {
-    background-color: #f8dce6;
-}
 
-.ueber-mich-seite .navbar-brand {
-    color: #880e4f;
-    font-weight: bold;
-}
-
-.ueber-mich-seite .nav-link {
-    color: #880e4f;
-}
 
 
 /* Begrüßungsbereich */
@@ -900,10 +908,12 @@ body.ueber-mich-seite {
 
 /* Portrait */
 .portrait {
-    width: 300px;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 20px;
+    width: 650px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Facts-Bereich */
