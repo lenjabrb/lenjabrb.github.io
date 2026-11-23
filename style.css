@@ -848,19 +848,7 @@ body.ueber-mich-seite {
     min-height: 100vh;
 }
 
-/* Navigation nur auf Angelinas Seite */
-.ueber-mich-seite .navbar {
-    background-color: #f8dce6;
-}
 
-.ueber-mich-seite .navbar-brand {
-    color: #880e4f;
-    font-weight: bold;
-}
-
-.ueber-mich-seite .nav-link {
-    color: #880e4f;
-}
 
 
 /* Begrüßungsbereich */
@@ -900,10 +888,12 @@ body.ueber-mich-seite {
 
 /* Portrait */
 .portrait {
-    width: 300px;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 20px;
+    width: 650px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Facts-Bereich */
