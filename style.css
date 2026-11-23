@@ -325,7 +325,8 @@ h1, h2, h3, h4 {
 }
 
 .left-image {
-    display: none;
+    transform: rotate(-8deg);
+    right: 180px
 }
 
 .right-image {
@@ -341,8 +342,7 @@ h1, h2, h3, h4 {
     }
 
     .left-image {
-        left: 0;
-        transform: rotate(5deg);
+        display:none;
     }
 
     .right-image {
