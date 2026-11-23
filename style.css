@@ -422,21 +422,6 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
-/* Bilderrahmen-Platzhalter: goldener Look wird bewusst vermieden, wir bleiben im Farbschema */
-.exhibit-frame {
-  aspect-ratio: 16 / 10;                   /* gleichbleibendes Seitenverhältnis */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f5e5e5 0%, #e6c9cf 100%);
-  border: 10px solid var(--farbe-creme);
-  outline: 1px solid var(--farbe-creme);
-  outline-offset: 6px;
-  font-family: var(--schrift-titel);
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
-  font-style: italic;
-  color: var(--farbe-weinrot);
-}
 
 /* Falls ihr echte Bilder einsetzt: gleiche Rahmung */
 .exhibit-img {
