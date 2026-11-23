@@ -325,15 +325,32 @@ h1, h2, h3, h4 {
 }
 
 .left-image {
-    transform: rotate(-8deg);
-    left: -180px
+    display: none;
 }
 
 .right-image {
     transform: rotate(8deg);
     right: -80px
 }
+/* Smartphone */
+@media (max-width: 767px) {
 
+    .side-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .left-image {
+        left: 0;
+        transform: rotate(5deg);
+    }
+
+    .right-image {
+        left: 0;
+        transform: rotate(-5deg);
+    }
+
+}
 /* ---------------------------------------------------------------------
    5. ALLGEMEINE ABSCHNITTE
    --------------------------------------------------------------------- */
